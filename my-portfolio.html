@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanvarie Meegoda - Web Developer & UI/UX Designer</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" class="rounded-full" href="img/fav_icon_SM.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="bg-gray-100 text-[#1C325B] font-sans" x-data="{ activeSection: 'home', mobileMenuOpen: false }">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md fixed w-full z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center space-x-4">
+                        <img src="img/SM_logo.gif" alt="" class="w-8 h- rounded-full">
+                        <a href="#home" class="text-2xl font-bold text-[#1C325B]" @click="activeSection = 'home'">
+                            Sanvarie Meegoda 
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button 
+                            @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="text-gray-600 hover:text-[#1C325B] focus:outline-none"
+                        >
+                            <i x-show="!mobileMenuOpen" class="fas fa-bars"></i>
+                            <i x-show="mobileMenuOpen" class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a 
+                                @click="activeSection = 'home'" 
+                                :class="{'bg-[#1C325B] text-white': activeSection === 'home', 'text-gray-600 hover:bg-gray-200': activeSection !== 'home'}"
+                                class="px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                            >
+                                Home
+                            </a>
+                            <a 
+                                @click="activeSection = 'about'" 
+                                :class="{'bg-[#1C325B] text-white': activeSection === 'about', 'text-gray-600 hover:bg-gray-200': activeSection !== 'about'}"
+                                class="px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                            >
+                                About
+                            </a>
+                            <a 
+                                @click="activeSection = 'projects'" 
+                                :class="{'bg-[#1C325B] text-white': activeSection === 'projects', 'text-gray-600 hover:bg-gray-200': activeSection !== 'projects'}"
+                                class="px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                            >
+                                Projects
+                            </a>
+                            <a 
+                                @click="activeSection = 'skills'" 
+                                :class="{'bg-[#1C325B] text-white': activeSection === 'skills', 'text-gray-600 hover:bg-gray-200': activeSection !== 'skills'}"
+                                class="px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                            >
+                                Skills
+                            </a>
+                            <!-- <a 
+                                @click="activeSection = 'contact'" 
+                                :class="{'bg-[#1C325B] text-white': activeSection === 'contact', 'text-gray-600 hover:bg-gray-200': activeSection !== 'contact'}"
+                                class="px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                            >
+                                Contact
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div 
+                x-show="mobileMenuOpen" 
+                class="md:hidden"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90"
+            >
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a 
+                        @click="activeSection = 'home'; mobileMenuOpen = false" 
+                        class="text-gray-600 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        Home
+                    </a>
+                    <a 
+                        @click="activeSection = 'about'; mobileMenuOpen = false" 
+                        class="text-gray-600 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        About
+                    </a>
+                    <a 
+                        @click="activeSection = 'projects'; mobileMenuOpen = false" 
+                        class="text-gray-600 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        Projects
+                    </a>
+                    <a 
+                        @click="activeSection = 'skills'; mobileMenuOpen = false" 
+                        class="text-gray-600 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        Skills
+                    </a>
+                    <!-- <a 
+                        @click="activeSection = 'contact'; mobileMenuOpen = false" 
+                        class="text-gray-600 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        Contact
+                    </a> -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Sections -->
+            <div class="pt-16">
+                <!-- Home Section -->
+                <section 
+                    x-show="activeSection === 'home'" 
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[60vh] grid grid-cols-1 md:grid-cols-12 items-center gap-8"
+                >
+                <!-- Text Content -->
+                <div class="md:col-span-8 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                        Web Developer & UI/UX Designer
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Crafting digital experiences with creativity and technical expertise
+                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a 
+                            @click="activeSection = 'projects'" 
+                            class="bg-[#1C325B] text-white px-6 py-3 rounded-md hover:bg-gray-700 transition duration-300"
+                        >
+                            View Projects
+                        </a>
+                        <a 
+                            href="documents/Associate-Web-Developer.pdf" 
+                            class="border border-[#1C325B] text-[#1C325B] px-6 py-3 rounded-md hover:bg-gray-100 transition duration-300"
+                        >
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image Content -->
+                <div class="md:col-span-4 flex justify-center pb-4 pt-4">
+                    <img src="img/img-sm.jpeg" alt="Web Developer and UI/UX Designer" class="h-auto rounded-md shadow-lg">
+                </div>
+                
+            </section>
+
+
+            <!-- About Section -->
+            <section 
+                x-show="activeSection === 'about'" 
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[70vh] py-16"
+            >
+                <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Professional Journey</h3>
+                        <p class="text-gray-600 mb-4">
+                            A passionate web developer and UI/UX designer with experience in full-stack development. 
+                            Currently studying at SLIATE and building expertise in HTML, CSS, Bootstrap, and Tailwind CSS.
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            My journey includes an internship at The Keen Rabbits (Pvt) Ltd and roles as an Associate Software Engineer, 
+                            where I've honed my skills in web development, project management, and team leadership.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="bg-white shadow-lg rounded-lg p-6">
+                            <h4 class="text-xl font-semibold mb-4">Professional Highlights</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Full-stack Web Development
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    UI/UX Design
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    QA Manual
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Project Management
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Team Leadership
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section 
+                x-show="activeSection === 'projects'" 
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen py-16"
+            >
+                <h1 class="text-3xl font-bold text-center mb-6">My Projects</h1>
+                <h5 class="text-3xl font-bold text-center mb-12">Accomplished Works</h5>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project 1: Burger Palace -->
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <!-- Image Section -->
+                        <div>
+                            <img 
+                                src="img/project-images/Mobile_UI.jpg" 
+                                alt="Burger Palace Landing Page" 
+                                class="w-full h-60 object-cover"
+                            >
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Burger Palace Mobile UI</h3>
+                            <p class="text-gray-600 mb-4">
+                                Designed engaging content for the company's mobile app, focusing on user engagement and branding.
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">UI/UX Design</span>
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: DelishCrush -->
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <div>
+                            <img 
+                                src="img/project-images/delish-crush.png" 
+                                alt="Burger Palace Landing Page" 
+                                class="w-full h-60 object-cover"
+                            >
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">DelishCrush Web App</h3>
+                            <p class="text-gray-600 mb-4">
+                                Developed a cake shop app using Laravel, HTML, JavaScript, and Bootstrap.
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Laravel</span>
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 class="text-3xl font-bold text-center mt-12 mb-12">Future Ventures</h5>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project 3: Sassy Fashion -->
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Sassy Fashion Website</h3>
+                            <p class="text-gray-600 mb-4">
+                                Created a dynamic fashion brand website using React.js with sophisticated black, gold, and white design.
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">React.js</span>
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Visual Studio Code</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Travel Agency -->
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Travel Agency App</h3>
+                            <p class="text-gray-600 mb-4">
+                                Designed a user-friendly app to enhance the experience for travel enthusiasts.
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">UI/UX Design</span>
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Event Management Dashboard -->
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Event Booking Dashboard</h3>
+                            <p class="text-gray-600 mb-4">
+                                Currently designing a multi-page dashboard for event booking with a focus on musical shows.
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">Dashboard Design</span>
+                                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm">UI/UX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section 
+                x-show="activeSection === 'skills'" 
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[70vh] py-16"
+            >
+                <h2 class="text-3xl font-bold text-center mb-12">Skills & Technologies</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white shadow-lg rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">Web Technologies</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fab fa-html5 text-orange-500 mr-2 text-xl"></i>
+                                <span>HTML5</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-css3-alt text-blue-500 mr-2 text-xl"></i>
+                                <span>CSS3</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-js text-yellow-500 mr-2 text-xl"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-react text-blue-400 mr-2 text-xl"></i>
+                                <span>React.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white shadow-lg rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">Frameworks & Libraries</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-code text-purple-500 mr-2 text-xl"></i>
+                                <span>Laravel</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-bootstrap text-purple-600 mr-2 text-xl"></i>
+                                <span>Bootstrap</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-wind text-blue-400 mr-2 text-xl"></i>
+                                <span>Tailwind CSS</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-leaf text-green-500 mr-2 text-xl"></i>
+                                <span>Alpine.js</span>
+                            </div>                            
+                        </div>
+                    </div>
+
+                    <div class="bg-white shadow-lg rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">Design & Tools</h3>
+                        <div class="space-y-2">
+                            <!-- <div class="flex items-center">
+                                <i class="fas fa-palette text-pink-500 mr-2 text-xl"></i>
+                                <span>UI/UX Design</span>
+                            </div> -->
+                            <div class="flex items-center">
+                                <i class="fab fa-figma text-purple-400 mr-2 text-xl"></i>
+                                <span>Figma</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-blue-600 mr-2 text-xl"></i>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-code text-green-600 mr-2 text-xl"></i>
+                                <span>PHPStorm</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-code text-blue-500 mr-2 text-xl"></i>
+                                <span>VS Code</span>
+                            </div>
+                            <!-- <div class="flex items-center">
+                                <i class="fab fa-github text-gray-700 mr-2 text-xl"></i>
+                                <span>Git & GitHub</span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <!-- <section 
+                x-show="activeSection === 'contact'" 
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen py-16"
+            >
+                <h2 class="text-3xl font-bold text-center mb-12">Contact Me</h2>
+                <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-8">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
+                                placeholder="Your Name"
+                            >
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
+                                placeholder="your.email@example.com"
+                            >
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea 
+                                id="message" 
+                                rows="4" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
+                                placeholder="Write your message here..."
+                            ></textarea>
+                        </div>
+                        <div>
+                            <button 
+                                type="submit" 
+                                class="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-700 transition duration-300"
+                            >
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section> -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-[#1C325B] text-white py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+
+                    <!-- Linkedin Icon -->
+                    <a href="https://www.linkedin.com/in/sanvarie-meegoda-562367246/" class="text-white hover:text-gray-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+
+                    <!-- Github Icon -->
+                    <a href="https://github.com/SanGithub24" class="text-white hover:text-gray-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+
+                    <!-- Gmail Icon -->
+                    <a href="mailto:sanvariemeegoda@gmail.com" class="text-white hover:text-gray-300">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+
+                    <!-- WhatsApp Icon -->
+                    <a href="https://wa.me/+94713635304" target="_blank" class="text-white hover:text-gray-300">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </a>
+
+                    <!-- Behance Icon -->
+                    <a href="https://www.behance.net/sanvariemeegoda" target="_blank" class="text-white hover:text-gray-300">
+                        <i class="fab fa-behance text-2xl"></i>
+                    </a>
+
+                    <!-- Dribbble Icon -->
+                    <a href="https://dribbble.com/Sanvarie" target="_blank" class="text-white hover:text-gray-300">
+                        <i class="fab fa-dribbble text-2xl"></i>
+                    </a>
+
+                </div>
+                <p>&copy; 2024 Sanvarie Meegoda. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
